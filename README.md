@@ -1,7 +1,7 @@
 Sismo Alerta
 ============
 
-Receptor libre de la Señal Pública del [Sistema de Alerta Sísmica
+Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
 Prototipos
@@ -52,8 +52,8 @@ En caso de recibir un mensaje de alerta sísmica ambos leds encenderán
 intermitentemente en color rojo y el zumbador se activara. La duración
 de la alerta es de 60 segundos.
 
-Para probar la alerta basta con presionar el botón de usuario durante al
-menos 3 segundos y la alerta se activara durante 10 segundos.
+Para probar Sismo Alerta basta con presionar el botón de usuario durante
+al menos 3 segundos y se activara la alerta sísmica durante 10 segundos.
 
 En resumen los leds indican:
 
@@ -74,7 +74,7 @@ Sismo Alerta es posible gracias a la señal publica del Sistema de Alerta
 Sísmica Mexicano operado por el [Centro de Instrumentación y Registro
 Sísmico](http://www.cires.org.mx/).
 
-La señal del Sistema de alerta Sísmica Mexicano es de tipo
+La señal del Sistema de Alerta Sísmica Mexicano es de tipo
 [VHF](http://en.wikipedia.org/wiki/Very_high_frequency) en los canales
 de [Weather Radio](http://en.wikipedia.org/wiki/Weather_radio) y utiliza
 el [protocolo
@@ -83,8 +83,8 @@ transmitir mensajes sobre distintos riesgos.
 
 Sismo Alerta sintoniza y decodifica esta señal gracias al chip
 [Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
-que junto a una placa [Arduino](http://arduino.cc) dispara la Alerta
-Sísmica de acuerdo a los mensajes recibidos.
+que junto a una placa [Arduino](http://arduino.cc) dispara la alerta
+sísmica de acuerdo al mensaje recibido.
 
 Esquema de conexiones
 ---------------------
@@ -112,8 +112,9 @@ Cantidad | Descripción
 
 **Antena**
 
-Por la frecuencia del Weather Band Radio es muy fácil construir o
-adaptar una antena que nos permita sintonizarlo, hay dos opciones:
+Por la frecuencia de la señal pública del Sistema de Alerta Sísmico
+Mexicano es muy fácil construir o adaptar una antena que nos permita
+sintonizarlo, hay dos opciones:
 
 1. Tramo de 45 cm de cable.
 2. Un elemento de una _antena de conejo_.
