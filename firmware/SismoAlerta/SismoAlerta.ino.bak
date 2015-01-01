@@ -1,0 +1,210 @@
+#include "Wire.h"
+#include <Si4707.h>
+
+#define WBR_CH1 162400
+#define WBR_CH2 162425
+#define WBR_CH3 162450
+#define WBR_CH4 162475
+#define WBR_CH5 162500
+#define WBR_CH6 162525
+#define WBR_CH7 162550
+
+#define RST 4
+#define SEN 2
+
+#define RED 9
+#define YELLOW 6
+#define GREEN 5
+#define MUTE 7
+#define TEST 8
+#define BUZZ 10
+
+#define DEBOUNCE 250
+
+Si4707 wbr(RST, SEN);
+
+byte prevSameState = 0;
+int recvHeaders = 0;
+boolean muteState = 1;
+
+int led;
+int prevBtnMute = 1;
+int prevBtnTest = 1;
+long lastBtnMute = 0;
+long lastBtnTest = 0;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println();
+
+  pinMode(RED, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(MUTE, INPUT_PULLUP);
+  pinMode(TEST, INPUT_PULLUP); 
+  pinMode(BUZZ, OUTPUT);
+  
+  ok(RED);
+  if (!start()) {
+    while(1) error(RED, 500);
+  }
+
+  ok(YELLOW);
+  wbr.setMuteVolume(muteState);
+  if (tune(WBR_CH7)) {
+    return;
+  }
+  if (tune(WBR_CH5)) {
+    return;
+  }
+  if (tune(WBR_CH3)) {
+    return;
+  }
+  while(1) error(YELLOW, 500);
+}
+
+void loop() {
+  byte sameState = wbr.getSAMEState();
+  if (sameState == prevSameState) {
+    int btnMute = digitalRead(MUTE);
+    if (btnMute != prevBtnMute && (millis() - lastBtnMute) > DEBOUNCE) {
+      lastBtnMute = millis();
+      prevBtnMute = btnMute;
+      if (btnMute == LOW) {
+        mute();
+      }
+    }
+    int btnTest = digitalRead(TEST);
+    if (btnTest != prevBtnTest && (millis() - lastBtnTest) > DEBOUNCE) {
+      lastBtnTest = millis();
+      prevBtnTest = btnTest;
+      if (btnTest == LOW) {
+        test();
+      }
+    }
+    return;
+  }
+
+  Serial.print(millis());
+  Serial.print("\t");
+  if (sameState == 0) {
+    Serial.println(F("Fin de Mensaje"));
+  } else if (sameState == 1) {
+    Serial.println(F("Preambulo detectado"));
+  } else if (sameState == 2) {
+    Serial.println(F("Recibiendo cabecera de mensaje"));
+  } else if (sameState == 3) {
+    recvHeaders++;
+    Serial.println(F("Cabecera de mensaje completa"));
+  } else {
+    Serial.println(F("Desconocido"));
+  }
+  prevSameState = sameState;
+  
+  if (recvHeaders == 3) {
+    recvHeaders = 0;
+    byte s = wbr.getSAMESize();
+    byte msg[s];
+    wbr.getSAMEMessage(s, msg);    
+    printSAME(s, msg);
+    ok(GREEN);
+  }
+
+  delay(1);
+}
+
+boolean start() {
+  Serial.print(millis());
+  Serial.print(F("\t"));
+  Serial.print(F("Iniciando Si4707... "));
+  if (wbr.begin()) {
+    Serial.println(F("ok"));
+    return true;
+  } else {
+    Serial.println(F("error"));
+    return false;
+  }  
+}
+
+boolean tune(long freq) {
+  Serial.print(millis());
+  Serial.print(F("\t"));
+  Serial.print(F("Sintonizando "));
+  Serial.print((float) freq / 1000.0, 4);
+  Serial.print(F(" MHz... "));
+  if (wbr.setWBFrequency(freq)) {
+    Serial.println(F("ok"));
+    return true;
+  } else {
+    Serial.println(F("error"));
+    return false;
+  }
+}
+
+void printSAME(byte s, byte msg[])
+{
+  Serial.print(millis());
+  Serial.print(F("\t"));
+
+  if (s < 1) {
+    Serial.println(F("No hay mensaje SAME"));
+    return;
+  }
+
+  Serial.print(F("Mensaje SAME = "));
+  for (int i = 0; i < s; i++) {
+    if (msg[i] > 31 && msg[i] < 127) {
+      Serial.write(msg[i]);
+    } else {
+      Serial.print(".");
+    }
+  }
+  Serial.println();
+}
+
+void error(int l, int d) {
+  off();
+  digitalWrite(l, HIGH);
+  delay(d);
+  digitalWrite(l, LOW);
+  delay(d);
+}
+
+void mute () {
+  Serial.print(millis());
+  Serial.print(F("\t"));
+
+  muteState = !muteState;
+  Serial.print("Mute = ");
+  Serial.println(muteState);
+  wbr.setMuteVolume(muteState);
+}
+
+void test () {
+  Serial.print(millis());
+  Serial.print(F("\t"));
+  Serial.println("Test");
+  digitalWrite(RED, HIGH);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(GREEN, HIGH);
+  buzz();
+  ok(led);
+}
+
+void ok (int l) {
+  off();
+  led = l;
+  digitalWrite(l, HIGH);
+}
+
+void off () {
+  digitalWrite(RED, LOW);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(GREEN, LOW); 
+}
+
+void buzz () {
+  digitalWrite(BUZZ, HIGH);
+  delay(5000);
+  digitalWrite(BUZZ, LOW);
+}
