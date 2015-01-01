@@ -1,20 +1,21 @@
 Sismo Alerta
 ============
 
-Receptor libre de la [Alerta Sísmica Oficial de la Ciudad de México].
+Receptor libre de la Alerta Pública del [Sistema de Alerta Sísmica
+Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
 Prototipos
 ----------
 
-*Wirewrap*
+**Wirewrap**
 
 ![Wirewrap](img/sismo_alerta_wirewrap.png "Wirewrap")
 
-*Retransmisor Twitter*
+**Retransmisor Twitter**
 
 ![Wirewrap](img/sismo_alerta_twitter.png "Retransmisor Twitter")
 
-*Placa de pruebas*
+**Placa de pruebas**
 
 ![Breadboard](img/sismo_alerta_breadboard.png "Breadboard")
 
@@ -24,10 +25,10 @@ Operación
 La interacción con el usuario es por medio de:
 
 - Dos leds bicolor (rojo y verde) que llamaremos de energía y de señal.
-- Un zumbador (o buzzer).
+- Un zumbador o buzzer.
 - Un botón de usuario y opcionalmente un botón de reinicio.
 
-Al encender Sismo Alerta hace una autoprueba que consiste en:
+Al encender Sismo Alerta realiza una autoprueba que consiste en:
 
 1. Encender ambos leds en color verde y activar el zumbador,
 2. Encender ambos leds en color rojo y desactivar el zumbador.
@@ -37,14 +38,15 @@ Si después de la autoprueba se enciende el led de energía en color rojo
 existe un problema interno.
 
 Después de la autoprueba Sismo Alerta buscara el canal con mejor calidad
-para monitorear la Alerta Sísmica. Si no se encuentra un canal se
+para monitorear la Alerta Sísmica. En caso de no encontrar un canal se
 encenderá el led de señal en color rojo y se debe reubicar Sismo Alerta
-hasta que el led de señal encienda en color verde.
+hasta que el led de señal encienda en color verde. El escaneo de canales
+dura aproximadamente 30 segundos.
 
-En caso de sintonizar un canal el led de señal encenderá
+En caso de sintonizar con éxito un canal, el led de señal encenderá
 intermitentemente en color verde y dejara de parpadear cuando se reciba
-la prueba periódica de Alerta Sísmica que se transmite cada 3 horas a
-partir de las 2:45.
+la prueba periódica del Sisema de Alerta Sísmica que se transmite cada 3
+horas a partir de las 2:45.
 
 En caso de recibir un mensaje de Alerta Sísmica ambos leds encenderán
 intermitentemente en color rojo y el zumbador se activara. La duración
@@ -68,16 +70,16 @@ Energía|Rojo|Problema interno
 Funcionamiento
 --------------
 
-Sismo Alerta es posible gracias a la señal de Alerta Sísmica transmitida
-por el [Centro de Instrumentación y Registro
+Sismo Alerta es posible gracias a la señal publica del Sistema de Alerta
+Sísmica Mexicano operado por el [Centro de Instrumentación y Registro
 Sísmico](http://www.cires.org.mx/).
 
-La señal de Alerta Sísmica es de tipo
+La señal del Sistema de alerta Sísmica Mexicano es de tipo
 [VHF](http://en.wikipedia.org/wiki/Very_high_frequency) en los canales
 de [Weather Radio](http://en.wikipedia.org/wiki/Weather_radio) y utiliza
 el [protocolo
 SAME](http://en.wikipedia.org/wiki/Specific_Area_Message_Encoding) para
-informar de distintos riesgos.
+transmitir mensajes sobre distintos riesgos.
 
 Sismo Alerta sintoniza y decodifica esta señal gracias al chip
 [Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
@@ -131,7 +133,6 @@ Para Arduino IDE 1.5.7, la estructura de
 
 - Una maquina de estados (escaneo de canales y monitoreo de mensajes)
   implementada en el ciclo infinito del sketch.
-
 - Una interrupción periódica que monitorea el botón de usuario,
   actualiza los leds del dispositivo y activa el zumbador.
 
@@ -187,20 +188,20 @@ SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-...Q
 Retransmisor Twitter
 --------------------
 
-La versión Retransmisor Twitter de Sismo Alerta utiliza un [Arduino
+Esta versión de Sismo Alerta utiliza un [Arduino
 Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para enviar a un script
 web cada mensaje SAME recibido.
 
 El script [arduino.php](software/www/arduino.php) recibe los mensajes
-SAME, los guarda y los publica en Twitter como
+SAME, los guarda en archivos de texto y los publica en Twitter como
 [@SismoAlertaMX](https://twitter.com/sismoalertamx).
 
-Se debe configurar:
+Para implementar el retransmisor se debe configurar:
 
 1. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar el
 modo twitter y la llave de autenticación.
 
-2. En [arduino.php](software/www/arduino.php) las llaves de
+2. En [config.php](software/www/config.php) las llaves de
 autenticación de Sismo Alerta y Twitter.
 
 Autor
