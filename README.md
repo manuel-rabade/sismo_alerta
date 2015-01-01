@@ -1,7 +1,7 @@
 Sismo Alerta
 ============
 
-Receptor libre de la Alerta Pública del [Sistema de Alerta Sísmica
+Receptor libre de la Señal Pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
 Prototipos
@@ -30,36 +30,36 @@ La interacción con el usuario es por medio de:
 
 Al encender Sismo Alerta realiza una autoprueba que consiste en:
 
-1. Encender ambos leds en color verde y activar el zumbador,
-2. Encender ambos leds en color rojo y desactivar el zumbador.
-3. Apagar ambos leds.
+1. Encender ambos leds en color verde y activar el zumbador
+2. Encender ambos leds en color rojo y desactivar el zumbador
+3. Apagar ambos leds
 
 Si después de la autoprueba se enciende el led de energía en color rojo
 existe un problema interno.
 
 Después de la autoprueba Sismo Alerta buscara el canal con mejor calidad
-para monitorear la Alerta Sísmica. En caso de no encontrar un canal se
+para monitorear la alerta sísmica. En caso de no encontrar un canal se
 encenderá el led de señal en color rojo y se debe reubicar Sismo Alerta
 hasta que el led de señal encienda en color verde. El escaneo de canales
 dura aproximadamente 30 segundos.
 
-En caso de sintonizar con éxito un canal, el led de señal encenderá
+En caso de sintonizar con éxito un canal el led de señal encenderá
 intermitentemente en color verde y dejara de parpadear cuando se reciba
-la prueba periódica del Sisema de Alerta Sísmica que se transmite cada 3
-horas a partir de las 2:45.
+la prueba periódica del Sistema de Alerta Sísmica que se transmite cada
+3 horas a partir de las 2:45.
 
-En caso de recibir un mensaje de Alerta Sísmica ambos leds encenderán
+En caso de recibir un mensaje de alerta sísmica ambos leds encenderán
 intermitentemente en color rojo y el zumbador se activara. La duración
 de la alerta es de 60 segundos.
 
 Para probar la alerta basta con presionar el botón de usuario durante al
 menos 3 segundos y la alerta se activara durante 10 segundos.
 
-En resumen, la función de los leds es:
+En resumen los leds indican:
 
 Led|Color|Significado
 ---|-----|-----------
-Energía y Señal|Intermitente Rojo|Alerta Sísmica
+Energía y Señal|Intermitente Rojo|Alerta sísmica
 Señal|Intermitente Verde|Canal sintonizado, esperando prueba periódica
 Señal|Verde|Canal sintonizado y prueba periódica vigente
 Señal|Rojo|No hay canal sintonizado
