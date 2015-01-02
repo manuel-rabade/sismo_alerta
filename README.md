@@ -43,10 +43,11 @@ encenderá el led de señal en color rojo y se debe reubicar Sismo Alerta
 hasta que el led de señal encienda en color verde. El escaneo de canales
 dura aproximadamente 30 segundos.
 
-En caso de sintonizar con éxito un canal el led de señal encenderá
-intermitentemente en color verde y dejara de parpadear cuando se reciba
-la prueba periódica del Sistema de Alerta Sísmica que se transmite cada
-3 horas a partir de las 2:45.
+En caso de sintonizar un canal con éxito, el led de señal encenderá
+intermitentemente en color verde. Cuando Sismo Alerta reciba la prueba
+periódica del Sistema de Alerta Sísmica, que se transmite cada 3 horas a
+partir de las 2:45, el de señal led dejara de parpadear y quedara
+encendido en color verde.
 
 En caso de recibir un mensaje de alerta sísmica ambos leds encenderán
 intermitentemente en color rojo y el zumbador se activara. La duración
