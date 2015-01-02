@@ -85,7 +85,10 @@ transmitir mensajes sobre distintos riesgos.
 Sismo Alerta sintoniza y decodifica esta señal gracias al chip
 [Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
 que junto a una placa [Arduino](http://arduino.cc) dispara la alerta
-sísmica de acuerdo al mensaje recibido.
+sísmica de acuerdo al mensaje recibido. La comunicación entre el Si4707
+y el microcontrolador de Arduino es posible gracias a la biblioteca
+[Si4707 Arduino
+Library](https://github.com/manuel-rabade/Si4707_Arduino_Library).
 
 Esquema de conexiones
 ---------------------
