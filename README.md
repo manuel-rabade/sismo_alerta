@@ -42,8 +42,7 @@ existe un problema interno.
 
 Después de la autoprueba Sismo Alerta buscara el canal con mejor calidad
 para monitorear la alerta sísmica. En caso de no encontrar un canal se
-encenderá el led de señal en color rojo y se debe reubicar Sismo Alerta
-hasta que el led de señal encienda en color verde.
+encenderá el led de señal en color rojo.
 
 En caso de sintonizar un canal con éxito, el led de señal encenderá
 intermitentemente en color verde. Cuando Sismo Alerta reciba la prueba
@@ -82,7 +81,7 @@ La señal del Sistema de Alerta Sísmica Mexicano es de tipo
 de [Weather Radio](http://en.wikipedia.org/wiki/Weather_radio) y utiliza
 el [protocolo
 SAME](http://en.wikipedia.org/wiki/Specific_Area_Message_Encoding) para
-transmitir mensajes sobre distintos riesgos.
+transmitir alertas sobre distintos riesgos.
 
 Sismo Alerta sintoniza y decodifica esta señal gracias al chip
 [Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
@@ -120,7 +119,7 @@ Cantidad | Descripción
 
 Por la frecuencia de la señal pública del Sistema de Alerta Sísmico
 Mexicano es muy fácil construir o adaptar una antena que nos permita
-sintonizarlo, hay dos opciones:
+sintonizarla, hay dos opciones:
 
 1. Tramo de 45 cm de cable.
 2. Un elemento de una _antena de conejo_.
