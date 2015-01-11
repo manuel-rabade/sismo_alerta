@@ -1,0 +1,18 @@
+<?php
+
+// llave secreta de autenticación
+$secret = '';
+
+// ruta para guardar mensajes same
+$log = realpath(__DIR__) . '/log';
+
+// url base para consultar mensajes same
+$base = 'http://example.com/log';
+
+// llaves y tokens de la aplicación de twitter
+$consumer_key = '';
+$consumer_secret = '';
+$access_token = '';
+$access_token_secret = '';
+
+?>
