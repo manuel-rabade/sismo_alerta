@@ -21,10 +21,12 @@
 
 /* parámetros de operación
    -----------------------
-   
-   SCAN_SAMPLES: muestras por canal para el escaneo
-   SCAN_SAMPLE_DELAY: retardo para tomar muestra del canal (milisegundos)
+
+   SCAN_TIMES: numero de escaneos
    SCAN_DELAY: retardo entre escaneo de canales (milisegundos)
+   SCAN_SAMPLES: muestras por canal
+   SCAN_SAMPLE_DELAY: retardo para tomar muestra (milisegundos)
+   SCAN_SAMPLE_LOG: informar de cada muestra del escaneo (0 o 1)
    TUNE_MIN_SNR: relación señal/ruido mínima (db)
    TUNE_MIN_RSSI: potencia mínima (db)
    TUNE_LOST_DELAY: retardo para declarar un canal perdido (milisegundos)
@@ -38,11 +40,13 @@
    UPDATE_DELAY: retardo para actualizar al usuario (milisegundos) 
    SELFTEST_DELAY: retardo autoprueba (milisegundos) */
 
+#define SCAN_TIMES 3
+#define SCAN_DELAY 1000
 #define SCAN_SAMPLES 8
 #define SCAN_SAMPLE_DELAY 200
-#define SCAN_DELAY 1000
+#define SCAN_SAMPLE_LOG 0
 #define TUNE_MIN_SNR 2
-#define TUNE_MIN_RSSI 1
+#define TUNE_MIN_RSSI 0
 #define TUNE_LOST_DELAY 300000 // 5 minutos
 #define ALARM_TIME 60000 // 1 minuto
 #define TEST_TIME 10000 // 10 segundos
@@ -58,21 +62,37 @@
    ------------------
 
    WBR_CHANNELS: frecuencia de los canales de weather band radio (en khz)
-   WBR_CHANNELS_SIZE: número de canales de weather band radio
-*/
+   WBR_CHANNELS_SIZE: número de canales de weather band radio */
 
 #define WBR_CHANNELS 162400,162425,162450,162475,162500,162525,162550
 #define WBR_CHANNELS_SIZE 7
 
+/* retransmisor twitter
+   --------------------
+
+   YUN_TWITTER: activar modo arduino yún con retransmisor twitter (0 o 1)
+   WS_URL: url del web service
+   WS_SECRET: llave secreta de autenticación con el web service */
+
+#define YUN_TWITTER 0
+#define WS_URL "http://example.com/arduino.php"
+#define WS_SECRET "1234567890"
+
 /* constantes
    ---------- */
 
+#if YUN_TWITTER
+#define LOG Console
+#else
+#define LOG Serial
+#endif
+#define SCAN_AVG_K (SCAN_TIMES * SCAN_SAMPLES)
 #define SAME_EOM_DET 0
 #define SAME_PRE_DET 1
 #define SAME_HDR_DET 2
 #define SAME_HDR_RDY 3
 #define SAME_TIMEOUT 6000
-#define SAME_TEST_TIMEOUT 10800000 // 3 horas
+#define SAME_TEST_TIMEOUT 11400000 // 3 horas y 10 minutos
 #define SERVICE_USER_MICROSEC 1000000 / SERVICE_USER_FREQ
 #define USER_BUTTON_INT_MAX ((USER_BUTTON_DEBOUNCE * SERVICE_USER_FREQ) / 1000)
 #define EXT_POWER_K_MV (3300 / 512)

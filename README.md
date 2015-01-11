@@ -4,20 +4,23 @@ Sismo Alerta
 Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
+Sigue al retransmisor en twitter de Sismo Alerta en
+[@SismoAlertaMX](http://twitter.com/sismoalertamx).
+
 Prototipos
 ----------
 
 **Wirewrap**
 
-![Wirewrap](img/sismo_alerta_wirewrap.png "Wirewrap")
+![Wirewrap](pics/sismo_alerta_wirewrap.png "Wirewrap")
 
 **Retransmisor Twitter**
 
-![Wirewrap](img/sismo_alerta_twitter.png "Retransmisor Twitter")
+![Wirewrap](pics/sismo_alerta_twitter.png "Retransmisor Twitter")
 
 **Placa de pruebas**
 
-![Breadboard](img/sismo_alerta_breadboard.png "Breadboard")
+![Breadboard](pics/sismo_alerta_breadboard.png "Breadboard")
 
 Operación
 ---------
@@ -40,13 +43,12 @@ existe un problema interno.
 Después de la autoprueba Sismo Alerta buscara el canal con mejor calidad
 para monitorear la alerta sísmica. En caso de no encontrar un canal se
 encenderá el led de señal en color rojo y se debe reubicar Sismo Alerta
-hasta que el led de señal encienda en color verde. El escaneo de canales
-dura aproximadamente 30 segundos.
+hasta que el led de señal encienda en color verde.
 
 En caso de sintonizar un canal con éxito, el led de señal encenderá
 intermitentemente en color verde. Cuando Sismo Alerta reciba la prueba
 periódica del Sistema de Alerta Sísmica, que se transmite cada 3 horas a
-partir de las 2:45, el de señal led dejara de parpadear y quedara
+partir de las 2:45, el led de señal dejara de parpadear y quedara
 encendido en color verde.
 
 En caso de recibir un mensaje de alerta sísmica ambos leds encenderán
@@ -56,7 +58,7 @@ de la alerta es de 60 segundos.
 Para probar Sismo Alerta basta con presionar el botón de usuario durante
 al menos 3 segundos y se activara la alerta sísmica durante 10 segundos.
 
-En resumen los leds indican:
+En resumen, los leds indican:
 
 Led|Color|Significado
 ---|-----|-----------
@@ -109,9 +111,9 @@ Cantidad | Descripción
 1 | Zumbador
 2 | Push Button normalmente abierto
 2 | Led Bicolor
-2 | Resistencia 10M ohm
 2 | Resistencia 33 ohm
-2 | Resistencia 150 ohm
+2 | Resistencia 330 ohm
+2 | Resistencia 10M ohm
 1 | Antena
 
 **Antena**
@@ -125,9 +127,8 @@ sintonizarlo, hay dos opciones:
 
 **Importante**
 
-Configurar la Power Cell a 3.3 V (cortar jumper 5V y soldar 3.3V).
-
-Configurar Si4707 Breakout para usar una antena externa (cortar jumper
+- Configurar la Power Cell a 3.3 V (cortar jumper 5V y soldar 3.3V).
+- Configurar Si4707 Breakout para usar una antena externa (cortar jumper
 HP y soldar EXT).
 
 Firmware
@@ -197,17 +198,19 @@ Esta versión de Sismo Alerta utiliza un [Arduino
 Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para enviar a un script
 web cada mensaje SAME recibido.
 
-El script [arduino.php](software/www/arduino.php) recibe los mensajes
-SAME, los guarda en archivos de texto y los publica en Twitter como
-[@SismoAlertaMX](https://twitter.com/sismoalertamx).
+El script [arduino.php](software/twitter/arduino.php) recibe los
+mensajes SAME, los guarda en archivos de texto y los publica en Twitter
+como [@SismoAlertaMX](https://twitter.com/sismoalertamx).
 
-Para implementar el retransmisor se debe configurar:
+Para implementar el retransmisor se debe:
 
-1. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar el
-modo twitter y la llave de autenticación.
+1. Configurar en [config.php](software/twitter/config.php.sample) los
+parametros para guardar y consultar los mensajes SAME además de las
+llaves secretas de Sismo Alerta y Twitter.
 
-2. En [config.php](software/www/config.php) las llaves de
-autenticación de Sismo Alerta y Twitter.
+2. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar el
+modo `YUN_TWITTER` y configurar la URL del web service de Sismo Alerta
+con su llave secreta.
 
 Autor
 -----
