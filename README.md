@@ -44,11 +44,11 @@ Después de la autoprueba Sismo Alerta buscara el canal con mejor calidad
 para monitorear la alerta sísmica. En caso de no encontrar un canal se
 encenderá el led de señal en color rojo.
 
-En caso de sintonizar un canal con éxito, el led de señal encenderá
+En caso de sintonizar un canal con éxito el led de señal encenderá
 intermitentemente en color verde. Cuando Sismo Alerta reciba la prueba
-periódica del Sistema de Alerta Sísmica, que se transmite cada 3 horas a
-partir de las 2:45, el led de señal dejara de parpadear y quedara
-encendido en color verde.
+periódica del Sistema de Alerta Sísmica el led de señal dejara de
+parpadear y quedara encendido en color verde. El mensaje de prueba se
+transmite cada 3 horas a partir de las 2:45.
 
 En caso de recibir un mensaje de alerta sísmica ambos leds encenderán
 intermitentemente en color rojo y el zumbador se activara. La duración
