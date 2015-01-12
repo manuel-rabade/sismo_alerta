@@ -12,15 +12,15 @@ Prototipos
 
 **Wirewrap**
 
-![Wirewrap](pics/sismo_alerta_wirewrap.jpg "Wirewrap")
+[![Wirewrap](pics/sismo_alerta_wirewrap.jpg "Wirewrap")](https://flic.kr/p/pPRnoG)
 
 **Retransmisor Twitter**
 
-![Wirewrap](pics/sismo_alerta_twitter.jpg "Retransmisor Twitter")
+[![Wirewrap](pics/sismo_alerta_twitter.jpg "Retransmisor Twitter")](https://flic.kr/p/qJyAiN)
 
 **Placa de pruebas**
 
-![Breadboard](pics/sismo_alerta_breadboard.jpg "Breadboard")
+[![Breadboard](pics/sismo_alerta_breadboard.jpg "Breadboard")](https://flic.kr/p/pPRnDw)
 
 Operación
 ---------
