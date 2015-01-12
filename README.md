@@ -4,9 +4,6 @@ Sismo Alerta
 Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
-Sigue al retransmisor en twitter de Sismo Alerta en
-[@SismoAlertaMX](http://twitter.com/sismoalertamx).
-
 Prototipos
 ----------
 
@@ -190,8 +187,10 @@ SAME_RWT
 SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-...Q
 ```
 
-Retransmisor Twitter
---------------------
+Software
+--------
+
+### Retransmisor Twitter
 
 Esta versión de Sismo Alerta utiliza un [Arduino
 Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para enviar a un script
