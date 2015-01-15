@@ -4,20 +4,23 @@ Sismo Alerta
 Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
-Prototipos
-----------
+- [Prototipo](#prototipo)
+- [Operación](#operacion)
+- [Funcionamiento](#funcionamiento)
+- [Hardware](#hardware)
+- [Firmware](#firmware)
+- [Retransmisor a Internet](#retransmisor-a-internet)
+- [Autor](#autor)
+- [Licencia](#licencia)
 
-**Wirewrap**
+Prototipo
+---------
 
-[![Wirewrap](pics/sismo_alerta_wirewrap.jpg "Wirewrap")](https://flic.kr/p/pPRnoG)
+[![Wirewrap 1](pics/sismo_alerta_wirewrap_1.jpg "Wirewrap 1")](https://flic.kr/p/qupofe)
 
-**Retransmisor Twitter**
+[![Wirewrap 2](pics/sismo_alerta_wirewrap_2.jpg "Wirewrap 2")](https://flic.kr/p/pPRnoG)
 
-[![Wirewrap](pics/sismo_alerta_twitter.jpg "Retransmisor Twitter")](https://flic.kr/p/qJyAiN)
-
-**Placa de pruebas**
-
-[![Breadboard](pics/sismo_alerta_breadboard.jpg "Breadboard")](https://flic.kr/p/pPRnDw)
+[![Wirewrap 3](pics/sismo_alerta_wirewrap_3.jpg "Wirewrap 3")](https://flic.kr/p/qwKxXX)
 
 Operación
 ---------
@@ -88,15 +91,10 @@ y el microcontrolador de Arduino es posible gracias a la biblioteca
 [Si4707 Arduino
 Library](https://github.com/manuel-rabade/Si4707_Arduino_Library).
 
-Esquema de conexiones
----------------------
-
-![Schematics](hardware/sismo_alerta.png "Schematics")
-
 Hardware
 --------
 
-**Partes**
+### Lista de materiales
 
 Cantidad | Descripción
 -------- | -----------
@@ -112,7 +110,7 @@ Cantidad | Descripción
 2 | Resistencia 10M ohm
 1 | Antena
 
-**Antena**
+#### Antena
 
 Por la frecuencia de la señal pública del Sistema de Alerta Sísmico
 Mexicano es muy fácil construir o adaptar una antena que nos permita
@@ -121,17 +119,21 @@ sintonizarla, hay dos opciones:
 1. Tramo de 45 cm de cable.
 2. Un elemento de una _antena de conejo_.
 
-**Importante**
+#### Importante
 
 - Configurar la Power Cell a 3.3 V (cortar jumper 5V y soldar 3.3V).
 - Configurar Si4707 Breakout para usar una antena externa (cortar jumper
-HP y soldar EXT).
+  HP y soldar EXT).
+
+### Esquema de conexiones
+
+![Schematics](hardware/sismo_alerta.png "Schematics")
 
 Firmware
 --------
 
 Para Arduino IDE 1.5.7, la estructura de
-[SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino) es la siguiente:
+[SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino) es:
 
 - Una maquina de estados (escaneo de canales y monitoreo de mensajes)
   implementada en el ciclo infinito del sketch.
@@ -187,20 +189,26 @@ SAME_RWT
 SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-...Q
 ```
 
-Software
---------
+Retransmisor a Internet
+-----------------------
+
+Esta versión del Hardware utiliza un [Arduino
+Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para monitorear la
+operación de Sismo Alerta.
+
+[![Retransmisor](pics/sismo_alerta_retransmisor.jpg "Retransmisor")](https://flic.kr/p/qJyAiN)
 
 ### Retransmisor Twitter
 
-Esta versión de Sismo Alerta utiliza un [Arduino
-Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para enviar a un script
-web cada mensaje SAME recibido.
+Esta opción del Firmware envia a un script web cada mensaje SAME
+recibido. **El objetivo de esta opción no es transmitir la alerta
+sísmica al público en general.**
 
 El script [arduino.php](software/twitter/arduino.php) recibe los
 mensajes SAME, los guarda en archivos de texto y los publica en Twitter
 como [@SismoAlertaMX](https://twitter.com/sismoalertamx).
 
-Para implementar el retransmisor se debe:
+Para implementar el retransmisor en twitter se debe:
 
 1. Configurar en [config.php](software/twitter/config.php.sample) los
 parametros para guardar y consultar los mensajes SAME además de las
