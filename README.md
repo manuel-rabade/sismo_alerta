@@ -5,7 +5,7 @@ Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
 - [Prototipo](#prototipo)
-- [Operación](#operacion)
+- [Operación](#operaci%C3%B3n)
 - [Funcionamiento](#funcionamiento)
 - [Hardware](#hardware)
 - [Firmware](#firmware)
