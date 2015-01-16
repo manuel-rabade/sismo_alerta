@@ -4,15 +4,6 @@ Sismo Alerta
 Receptor libre de la señal pública del [Sistema de Alerta Sísmica
 Mexicano](http://www.cires.org.mx/sasmex_es.php).
 
-- [Prototipo](#prototipo)
-- [Operación](#operaci%C3%B3n)
-- [Funcionamiento](#funcionamiento)
-- [Hardware](#hardware)
-- [Firmware](#firmware)
-- [Retransmisor a Internet](#retransmisor-a-internet)
-- [Autor](#autor)
-- [Licencia](#licencia)
-
 Prototipo
 ---------
 
@@ -94,7 +85,7 @@ Library](https://github.com/manuel-rabade/Si4707_Arduino_Library).
 Hardware
 --------
 
-### Lista de materiales
+### Lista de partes
 
 Cantidad | Descripción
 -------- | -----------
@@ -214,8 +205,8 @@ Para implementar el retransmisor en twitter se debe:
 parametros para guardar y consultar los mensajes SAME además de las
 llaves secretas de Sismo Alerta y Twitter.
 
-2. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar el
-modo `YUN_TWITTER` y configurar la URL del web service de Sismo Alerta
+2. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar la
+opción `YUN_TWITTER` y configurar la URL del web service de Sismo Alerta
 con su llave secreta.
 
 Autor
