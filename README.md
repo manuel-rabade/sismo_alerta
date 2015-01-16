@@ -20,7 +20,7 @@ La interacción con el usuario es por medio de:
 
 - Dos leds bicolor (rojo y verde) que llamaremos de energía y de señal.
 - Un zumbador o buzzer.
-- Un botón de usuario y opcionalmente un botón de reinicio.
+- Un botón de usuario.
 
 Al encender Sismo Alerta realiza una autoprueba que consiste en:
 
@@ -180,18 +180,18 @@ SAME_RWT
 SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-...Q
 ```
 
-Retransmisor a Internet
------------------------
+Monitor
+-------
 
 Esta versión del Hardware utiliza un [Arduino
 Yún](http://arduino.cc/en/Main/ArduinoBoardYun) para monitorear la
 operación de Sismo Alerta.
 
-[![Retransmisor](pics/sismo_alerta_retransmisor.jpg "Retransmisor")](https://flic.kr/p/qJyAiN)
+[![Monitor](pics/sismo_alerta_monitor.jpg "Monitor")](https://flic.kr/p/qJyAiN)
 
-### Retransmisor Twitter
+### Repetidor Twitter
 
-Esta opción del Firmware envia a un script web cada mensaje SAME
+Esta opción del Firmware envía a un script web cada mensaje SAME
 recibido. **El objetivo de esta opción no es transmitir la alerta
 sísmica al público en general.**
 
@@ -199,7 +199,7 @@ El script [arduino.php](software/twitter/arduino.php) recibe los
 mensajes SAME, los guarda en archivos de texto y los publica en Twitter
 como [@SismoAlertaMX](https://twitter.com/sismoalertamx).
 
-Para implementar el retransmisor en twitter se debe:
+Para implementar el repetidor en twitter se debe:
 
 1. Configurar en [config.php](software/twitter/config.php.sample) los
 parametros para guardar y consultar los mensajes SAME además de las
