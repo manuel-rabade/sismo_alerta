@@ -126,8 +126,8 @@ Firmware
 Para Arduino IDE 1.5.7, la estructura de
 [SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino) es:
 
-- Una maquina de estados (escaneo de canales y monitoreo de mensajes)
-  implementada en el ciclo infinito del sketch.
+- Una maquina de estados en el ciclo infinito del sketch encargada
+  escaneo de canales y monitoreo de mensajes
 - Una interrupción periódica que monitorea el botón de usuario,
   actualiza los leds del dispositivo y activa el zumbador.
 
