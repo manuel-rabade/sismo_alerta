@@ -91,7 +91,7 @@ Cantidad | Descripción
 -------- | -----------
 1 | [Arduino Pro Mini 3.3 V 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
 1 | [Power Cell - LiPo Charger/Booster](https://www.sparkfun.com/products/11231)
-1 | [Si4707 Weather Band Receiver Breakout](Si4707 Weather Band Receiver Breakout)
+1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
 1 | Bateria Li-Ion 3.7 V 800 mAh
 1 | Zumbador
 2 | Push Button normalmente abierto
