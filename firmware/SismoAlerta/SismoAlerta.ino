@@ -24,6 +24,7 @@
 #include <Bridge.h>
 #include <Console.h>
 #include <HttpClient.h>
+#include "yun_twitter.h"
 #endif
 
 /* variables y objetos globales 
@@ -69,7 +70,7 @@ void setup() {
 #if YUN_TWITTER
   Bridge.begin();
   LOG.begin();
-  //while (!LOG);
+  while (!LOG);
 #else
   LOG.begin(9600);
   LOG.println();
@@ -220,7 +221,7 @@ void listen() {
       return;
     }
   }
-  
+
   // monitoreo del tono 1050 khz
   boolean asq_status = wbr.getASQ();
   if (asq_prev_status != asq_status) {
@@ -240,8 +241,13 @@ void listen() {
     switch (same_state) {
     case SAME_EOM_DET:
       // fin del mensaje
-      same_reset();
       LOG.println(F("SAME_EOM_DET"));
+      if (same_headers_count > 0) {
+        // si recibimos solo 1 o 2 cabeceras
+        same_message();
+      } else {
+        same_reset();
+      }
       break;
     case SAME_PRE_DET:
       // preámbulo detectado
@@ -271,10 +277,15 @@ void listen() {
 
   // timeout mensaje same
   if (same_timer && millis() - same_timer > SAME_TIMEOUT) {
-    same_reset();
     LOG.println(F("SAME_TIMEOUT"));
+    if (same_headers_count > 0) {
+      // si recibimos solo 1 o 2 cabeceras
+      same_message();
+    } else {
+      same_reset();
+    }
   }
-  
+
   // timeout prueba same
   if (same_test_timer && millis() - same_test_timer > SAME_TEST_TIMEOUT) {
     same_test_timer = 0;

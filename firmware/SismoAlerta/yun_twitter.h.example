@@ -1,0 +1,8 @@
+/* retransmisor twitter
+   --------------------
+
+   WS_URL: url del web service
+   WS_SECRET: llave secreta de autenticación con el web service */
+
+#define WS_URL "http://example.com/arduino.php"
+#define WS_SECRET "1234567890abcdefghijklmnopqrstuvwxyz"

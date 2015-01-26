@@ -42,8 +42,8 @@
 
 #define SCAN_TIMES 3
 #define SCAN_DELAY 1000
-#define SCAN_SAMPLES 8
-#define SCAN_SAMPLE_DELAY 200
+#define SCAN_SAMPLES 3
+#define SCAN_SAMPLE_DELAY 300
 #define SCAN_SAMPLE_LOG 0
 #define TUNE_MIN_SNR 2
 #define TUNE_MIN_RSSI 0
@@ -67,16 +67,12 @@
 #define WBR_CHANNELS 162400,162425,162450,162475,162500,162525,162550
 #define WBR_CHANNELS_SIZE 7
 
-/* retransmisor twitter
-   --------------------
+/* monitoreo
+   ---------
 
-   YUN_TWITTER: activar modo arduino yún con retransmisor twitter (0 o 1)
-   WS_URL: url del web service
-   WS_SECRET: llave secreta de autenticación con el web service */
+   YUN_TWITTER: activar modo arduino yún con retransmisor twitter (0 o 1) */
 
 #define YUN_TWITTER 0
-#define WS_URL "http://example.com/arduino.php"
-#define WS_SECRET "1234567890"
 
 /* constantes
    ---------- */
