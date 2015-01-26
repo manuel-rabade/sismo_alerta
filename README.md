@@ -91,7 +91,7 @@ Cantidad | Descripción
 -------- | -----------
 1 | [Arduino Pro Mini 3.3 V 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
 1 | [Power Cell - LiPo Charger/Booster](https://www.sparkfun.com/products/11231)
-1 | [Si4707 Weather Band Receiver Breakout](Si4707 Weather Band Receiver Breakout)
+1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
 1 | Bateria Li-Ion 3.7 V 800 mAh
 1 | Zumbador
 2 | Push Button normalmente abierto
@@ -126,8 +126,8 @@ Firmware
 Para Arduino IDE 1.5.7, la estructura de
 [SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino) es:
 
-- Una maquina de estados (escaneo de canales y monitoreo de mensajes)
-  implementada en el ciclo infinito del sketch.
+- Una maquina de estados en el ciclo infinito del sketch encargada
+  escaneo de canales y monitoreo de mensajes
 - Una interrupción periódica que monitorea el botón de usuario,
   actualiza los leds del dispositivo y activa el zumbador.
 
@@ -167,17 +167,6 @@ SAME_EOM_DET
 SAME_PRE_DET
 SAME_EOM_DET
 SAME_TEST_TIMEOUT
-SAME_PRE_DET
-SAME_HDR_DET
-SAME_HDR_RDY,1
-SAME_PRE_DET
-SAME_HDR_DET
-SAME_HDR_RDY,2
-SAME_PRE_DET
-SAME_HDR_DET
-SAME_HDR_RDY,3
-SAME_RWT
-SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-...Q
 ```
 
 Monitor
