@@ -20,9 +20,16 @@
 #include <Si4707.h>
 #include "SismoAlerta.h"
 
-#if YUN_TWITTER
+#ifdef YUN_MONITOR
 #include <Bridge.h>
 #include <Console.h>
+#endif
+
+#if YUN_LOGGER
+#include <Process.h>
+#endif
+
+#if YUN_TWITTER
 #include <HttpClient.h>
 #include "yun_twitter.h"
 #endif
@@ -57,7 +64,10 @@ volatile unsigned int last_ext_power_sample = 0;
 volatile unsigned long last_update = 0;
 volatile boolean update_state = LOW;
 
-// cliente http
+// versión monitor
+#if YUN_LOGGER
+Process proc;
+#endif
 #if YUN_TWITTER
 HttpClient http;
 #endif
@@ -67,16 +77,21 @@ HttpClient http;
 
 void setup() {
   // configuración consola telnet o puerto serial
-#if YUN_TWITTER
+#ifdef YUN_MONITOR
   Bridge.begin();
   LOG.begin();
+#if YUN_LOGGER
+  // proceso logger (telnet localhost 6571 | ...)
+  proc.runShellCommandAsynchronously("/root/sismo_alerta_logger");
   while (!LOG);
+#endif
 #else
   LOG.begin(9600);
   LOG.println();
 #endif
 
   // configuramos pines de entrada/salida
+  LOG.println(F("SETUP"));
   pinMode(BUZZER, OUTPUT);
   pinMode(POWER_LED_RED, OUTPUT);
   pinMode(POWER_LED_GREEN, OUTPUT);
@@ -100,6 +115,7 @@ void setup() {
   delay(SELFTEST_DELAY);
   
   // inicializamos si4707
+  LOG.println(F("BEGIN"));
   if (wbr.begin()) {
     // iniciamos la interrupción de servicio al usuario
     last_ext_power_sample = analogRead(EXT_POWER);

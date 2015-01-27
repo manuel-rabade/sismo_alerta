@@ -70,14 +70,17 @@
 /* monitoreo
    ---------
 
+   YUN_LOGGER: activar modo arduino yún con logger (0 o 1)
    YUN_TWITTER: activar modo arduino yún con retransmisor twitter (0 o 1) */
 
+#define YUN_LOGGER 0
 #define YUN_TWITTER 0
 
 /* constantes
    ---------- */
 
-#if YUN_TWITTER
+#if (YUN_LOGGER || YUN_TWITTER)
+#define YUN_MONITOR 1
 #define LOG Console
 #else
 #define LOG Serial

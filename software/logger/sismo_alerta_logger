@@ -1,0 +1,33 @@
+#!/bin/ash
+
+# Copyright 2015 Manuel Rodrigo Rábade García <manuel@rabade.net>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+base=/mnt/sda1/log
+
+if [ ! -d $base]; then
+    exit
+fi
+
+nc localhost 6571 | tr -d '\r' | \
+    while read -r input; do
+        path=$base/$(date '+%Y')
+        file=$path/$(date '+%m%d').txt
+        timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+        if [ ! -d $path ]; then
+            mkdir $path
+        fi
+        echo "[$timestamp] $input" >> $file
+    done

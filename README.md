@@ -92,9 +92,9 @@ Cantidad | Descripción
 1 | [Arduino Pro Mini 3.3 V 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
 1 | [Power Cell - LiPo Charger/Booster](https://www.sparkfun.com/products/11231)
 1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
-1 | Bateria Li-Ion 3.7 V 800 mAh
+1 | Batería Li-Ion 3.7 V 800 mAh
 1 | Zumbador
-2 | Push Button normalmente abierto
+2 | Botón pulsador normalmente abierto
 2 | Led Bicolor
 2 | Resistencia 33 ohm
 2 | Resistencia 330 ohm
@@ -138,7 +138,9 @@ En el puerto serial se registran los eventos de Sismo Alerta, por
 ejemplo:
 
 ```
+SETUP
 SELFTEST
+BEGIN
 SCAN_START
 SCAN,162400,0.00,0.00
 SCAN,162425,0.00,0.00
@@ -178,6 +180,70 @@ operación de Sismo Alerta.
 
 [![Monitor](pics/sismo_alerta_monitor.jpg "Monitor")](https://flic.kr/p/qJyAiN)
 
+#### Importante
+
+Para que funcionen correctamente las opciones de la versión monitor se
+debe descomentar la linea `reset-mcu` en `/etc/rc.local` del Linux
+empotrado en el Arduino Yún. El objetivo es habilitar el reinicio del
+microcontrolador después de terminar el arranque del Linux empotrado.
+
+### Bitácora
+
+Esta opción del Firmware guarda en archivos de texto cada evento de
+Sismo Alerta.
+
+El script [sismo_alerta_logger](software/logger/sismo_alerta_logger)
+recibe los eventos de Sismo Alerta por medio de la consola virtual y los
+guarda en carpetas y archivos de texto de acuerdo al año y día en que fueron
+generados.
+
+Para implementar la bitácora se debe:
+
+1. Insertar una memoria SD previamente particionada y formateada en el
+Arduino Yún. La memoria SD debe automontarse en `/mnt/sda1/` en el Linux
+empotrado.
+
+2. En el Linux empotrado del Arduino Yún se debe crear el directorio
+`/mnt/sda/log` donde se guardaran las bitácoras de operación y copiar el
+script [sismo_alerta_logger](software/logger/sismo_alerta_logger) en
+`/root`.
+
+3. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar la
+opción `YUN_LOGGER`.
+
+Un fragmento de bitácora del archivo `2015/0126.txt` seria:
+
+```
+[2015-01-26 12:51:51] SETUP
+[2015-01-26 12:51:51] SELFTEST
+[2015-01-26 12:51:53] BEGIN
+[2015-01-26 12:51:53] SCAN_START
+[2015-01-26 12:52:28] SCAN,162400,0.00,0.00
+[2015-01-26 12:52:28] SCAN,162425,0.00,0.00
+[2015-01-26 12:52:28] SCAN,162450,0.11,7.56
+[2015-01-26 12:52:28] SCAN,162475,0.00,0.00
+[2015-01-26 12:52:28] SCAN,162500,8.78,16.33
+[2015-01-26 12:52:28] SCAN,162525,0.00,0.00
+[2015-01-26 12:52:28] SCAN,162550,8.44,14.11
+[2015-01-26 12:52:29] SCAN_OK,162500
+[2015-01-26 14:45:12] SAME_PRE_DET
+[2015-01-26 14:45:12] SAME_HDR_DET
+[2015-01-26 14:45:13] SAME_HDR_RDY,1
+[2015-01-26 14:45:14] SAME_PRE_DET
+[2015-01-26 14:45:15] SAME_HDR_DET
+[2015-01-26 14:45:15] SAME_HDR_RDY,2
+[2015-01-26 14:45:17] SAME_PRE_DET
+[2015-01-26 14:45:17] SAME_HDR_DET
+[2015-01-26 14:45:18] SAME_HDR_RDY,3
+[2015-01-26 14:45:18] SAME_RWT
+[2015-01-26 14:45:18] SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-. .@
+[2015-01-26 14:45:20] SAME_EOM_DET
+[2015-01-26 14:45:22] SAME_PRE_DET
+[2015-01-26 14:45:22] SAME_EOM_DET
+[2015-01-26 14:45:24] SAME_PRE_DET
+[2015-01-26 14:45:24] SAME_EOM_DET
+```
+
 ### Repetidor Twitter
 
 Esta opción del Firmware envía a un script web cada mensaje SAME
@@ -191,12 +257,15 @@ como [@SismoAlertaMX](https://twitter.com/sismoalertamx).
 Para implementar el repetidor en twitter se debe:
 
 1. Configurar en [config.php](software/twitter/config.php.sample) los
-parametros para guardar y consultar los mensajes SAME además de las
+parámetros para guardar y consultar los mensajes SAME además de las
 llaves secretas de Sismo Alerta y Twitter.
 
 2. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar la
-opción `YUN_TWITTER` y configurar la URL del web service de Sismo Alerta
-con su llave secreta.
+opción `YUN_TWITTER`.
+
+3. En `yun_twitter.h` se debe configurar la URL del web service de Sismo
+Alerta con su llave secreta (ver
+[yun_twitter.h.example](firmware/SismoAlerta/yun_twitter.h.example)).
 
 Autor
 -----
