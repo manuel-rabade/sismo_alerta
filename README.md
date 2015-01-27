@@ -53,6 +53,7 @@ En resumen, los leds indican:
 Led|Color|Significado
 ---|-----|-----------
 Energía y Señal|Intermitente Rojo|Alerta sísmica
+Señal|Apagado|Sintonizando canal
 Señal|Intermitente Verde|Canal sintonizado, esperando prueba periódica
 Señal|Verde|Canal sintonizado y prueba periódica vigente
 Señal|Rojo|No hay canal sintonizado
@@ -94,7 +95,7 @@ Cantidad | Descripción
 1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
 1 | Batería Li-Ion 3.7 V 800 mAh
 1 | Zumbador
-2 | Botón pulsador normalmente abierto
+1 | Botón pulsador normalmente abierto
 2 | Led Bicolor
 2 | Resistencia 33 ohm
 2 | Resistencia 330 ohm
