@@ -56,7 +56,7 @@ Energía y Señal|Intermitente Rojo|Alerta sísmica
 Señal|Apagado|Sintonizando canal
 Señal|Intermitente Verde|Canal sintonizado, esperando prueba periódica
 Señal|Verde|Canal sintonizado y prueba periódica vigente
-Señal|Rojo|No se pudo sintonizar un canal
+Señal|Rojo|Error al sintonizar canal
 Energía|Apagado|Sin energía
 Energía|Verde|Alimentada por la red eléctrica
 Energía|Intermitente Verde|Alimentada por la batería de respaldo
