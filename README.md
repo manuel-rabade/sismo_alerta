@@ -53,14 +53,14 @@ En resumen, los leds indican:
 Led|Color|Significado
 ---|-----|-----------
 Energía y Señal|Intermitente Rojo|Alerta sísmica
-Señal|Apagado|Sintonizando canal
+Señal|Apagado|Sintonizando canal por primera vez
 Señal|Intermitente Verde|Canal sintonizado, esperando prueba periódica
 Señal|Verde|Canal sintonizado y prueba periódica vigente
-Señal|Rojo|Error al sintonizar canal
-Energía|Apagado|Sin energía
-Energía|Verde|Alimentada por la red eléctrica
+Señal|Rojo|Error al sintonizar canal, reintentando sintonización
+Energía|Apagado|Apagada, batería de respaldo agotada y no esta conectada a la red eléctrica
+Energía|Verde|Alimentada por la red eléctrica y cargando batería de respaldo
 Energía|Intermitente Verde|Alimentada por la batería de respaldo
-Energía|Rojo|Problema interno
+Energía|Rojo|Problema interno de hardware
 
 Funcionamiento
 --------------
