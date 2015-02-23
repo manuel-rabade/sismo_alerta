@@ -18,9 +18,10 @@ Operación
 
 La interacción con el usuario es por medio de:
 
-- Dos leds bicolor (rojo y verde) que llamaremos de energía y de señal.
-- Un zumbador o buzzer.
-- Un botón de usuario.
+- Led bicolor (rojo y verde) marcado como _energía_.
+- Led bicolor (rojo y verde) marcado como _señal_.
+- Zumbador.
+- Botón de usuario.
 
 Al encender Sismo Alerta realiza una autoprueba que consiste en:
 
@@ -79,10 +80,7 @@ transmitir alertas sobre distintos riesgos.
 Sismo Alerta sintoniza y decodifica esta señal gracias al chip
 [Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
 que junto a una placa [Arduino](http://arduino.cc) dispara la alerta
-sísmica de acuerdo al mensaje recibido. La comunicación entre el Si4707
-y el microcontrolador de Arduino es posible gracias a la biblioteca
-[Si4707 Arduino
-Library](https://github.com/manuel-rabade/Si4707_Arduino_Library).
+sísmica de acuerdo al mensaje recibido.
 
 Hardware
 --------
@@ -91,19 +89,21 @@ Hardware
 
 Cantidad | Descripción
 -------- | -----------
-1 | [Arduino Pro Mini 3.3 V 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
-1 | [Power Cell - LiPo Charger/Booster](https://www.sparkfun.com/products/11231)
+1 | [Arduino Pro Mini 3.3 V @ 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
+1 | [Power Cell: LiPo Charger/Booster](https://www.sparkfun.com/products/11231)
 1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
-1 | Batería Li-Ion 3.7 V 800 mAh
+2 | Led Bicolor 5 mm rojo/verde catodo común
+2 | Resistencia 33 Ω 1/4 W
+2 | Resistencia 330 Ω 1/4 W
+2 | Resistencia 10M Ω 1/4 W
+1 | Antena monopolo
 1 | Zumbador
 1 | Botón pulsador normalmente abierto
-2 | Led Bicolor
-2 | Resistencia 33 ohm
-2 | Resistencia 330 ohm
-2 | Resistencia 10M ohm
-1 | Antena
+1 | Swtich 1 polo 2 tiros 2 posiciones
+1 | Batería Li-Ion 3.7 V @ 800 mAh con conector JST
+1 | Convertidor AC a DC 5 V @ 500 mA micro USB
 
-#### Antena
+#### Antena monopolo
 
 Por la frecuencia de la señal pública del Sistema de Alerta Sísmico
 Mexicano es muy fácil construir o adaptar una antena que nos permita
@@ -125,11 +125,16 @@ sintonizarla, hay dos opciones:
 Firmware
 --------
 
-Para Arduino IDE 1.5.7, la estructura de
-[SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino) es:
+Para Arduino IDE 1.5.7 y requiere las siguientes bibliotecas:
+
+- [Si4707 Arduino Library](https://github.com/manuel-rabade/Si4707_Arduino_Library)
+- [TimerOne Library](https://github.com/PaulStoffregen/TimerOne)
+
+La estructura de [SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino)
+es:
 
 - Una maquina de estados en el ciclo infinito del sketch encargada
-  escaneo de canales y monitoreo de mensajes
+  escaneo de canales y monitoreo de mensajes.
 - Una interrupción periódica que monitorea el botón de usuario,
   actualiza los leds del dispositivo y activa el zumbador.
 
@@ -144,14 +149,17 @@ SETUP
 SELFTEST
 BEGIN
 SCAN_START
-SCAN,162400,0.00,0.00
-SCAN,162425,0.00,0.00
-SCAN,162450,0.00,0.00
-SCAN,162475,0.00,0.00
-SCAN,162500,4.13,5.50
-SCAN,162525,0.00,0.00
-SCAN,162550,3.38,5.00
-SCAN_OK,162500
+SCAN_AVG,162400,9,0.00,0.00
+SCAN_AVG,162425,9,0.00,0.00
+SCAN_AVG,162450,9,0.00,0.00
+SCAN_AVG,162475,9,0.00,0.00
+SCAN_AVG,162500,9,2.00,7.56
+SCAN_AVG,162525,9,0.00,0.00
+SCAN_AVG,162550,9,5.00,8.78
+SCAN_OK,162550
+SNR_RSSI_AVG,162550,240,3.84,8.65
+SNR_RSSI_AVG,162550,240,2.58,7.75
+SNR_RSSI_AVG,162550,240,1.50,5.92
 SAME_PRE_DET
 SAME_HDR_DET
 SAME_HDR_RDY,1
@@ -161,8 +169,8 @@ SAME_HDR_RDY,2
 SAME_PRE_DET
 SAME_HDR_DET
 SAME_HDR_RDY,3
+SAME,-CIV-RWT-000000+0300-1311431-XGDF/001-..,.
 SAME_RWT
-SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-....
 SAME_EOM_DET
 SAME_PRE_DET
 SAME_EOM_DET
@@ -170,7 +178,8 @@ SAME_PRE_DET
 SAME_EOM_DET
 SAME_PRE_DET
 SAME_EOM_DET
-SAME_TEST_TIMEOUT
+SNR_RSSI_AVG,162550,240,1.97,6.38
+SNR_RSSI_AVG,162550,240,2.72,8.13
 ```
 
 Monitor
@@ -213,37 +222,45 @@ script [sismo_alerta_logger](software/logger/sismo_alerta_logger) en
 3. En [SismoAlerta.h](firmware/SismoAlerta/SismoAlerta.h) activar la
 opción `YUN_LOGGER`.
 
-Un fragmento de bitácora del archivo `2015/0126.txt` seria:
+Un fragmento de bitácora del archivo `2015/0223.txt` seria:
 
 ```
-[2015-01-26 12:51:51] SETUP
-[2015-01-26 12:51:51] SELFTEST
-[2015-01-26 12:51:53] BEGIN
-[2015-01-26 12:51:53] SCAN_START
-[2015-01-26 12:52:28] SCAN,162400,0.00,0.00
-[2015-01-26 12:52:28] SCAN,162425,0.00,0.00
-[2015-01-26 12:52:28] SCAN,162450,0.11,7.56
-[2015-01-26 12:52:28] SCAN,162475,0.00,0.00
-[2015-01-26 12:52:28] SCAN,162500,8.78,16.33
-[2015-01-26 12:52:28] SCAN,162525,0.00,0.00
-[2015-01-26 12:52:28] SCAN,162550,8.44,14.11
-[2015-01-26 12:52:29] SCAN_OK,162500
-[2015-01-26 14:45:12] SAME_PRE_DET
-[2015-01-26 14:45:12] SAME_HDR_DET
-[2015-01-26 14:45:13] SAME_HDR_RDY,1
-[2015-01-26 14:45:14] SAME_PRE_DET
-[2015-01-26 14:45:15] SAME_HDR_DET
-[2015-01-26 14:45:15] SAME_HDR_RDY,2
-[2015-01-26 14:45:17] SAME_PRE_DET
-[2015-01-26 14:45:17] SAME_HDR_DET
-[2015-01-26 14:45:18] SAME_HDR_RDY,3
-[2015-01-26 14:45:18] SAME_RWT
-[2015-01-26 14:45:18] SAME,-CIV-RWT-000000+0300-1311431-XGDF/002-. .@
-[2015-01-26 14:45:20] SAME_EOM_DET
-[2015-01-26 14:45:22] SAME_PRE_DET
-[2015-01-26 14:45:22] SAME_EOM_DET
-[2015-01-26 14:45:24] SAME_PRE_DET
-[2015-01-26 14:45:24] SAME_EOM_DET
+[2015-02-23 13:38:00] SETUP
+[2015-02-23 13:38:00] SELFTEST
+[2015-02-23 13:39:02] BEGIN
+[2015-02-23 13:39:03] SCAN_START
+[2015-02-23 13:39:29] SCAN_AVG,162400,9,0.00,0.00
+[2015-02-23 13:39:29] SCAN_AVG,162425,9,0.00,0.00
+[2015-02-23 13:39:29] SCAN_AVG,162450,9,2.44,14.78
+[2015-02-23 13:39:29] SCAN_AVG,162475,9,0.00,0.00
+[2015-02-23 13:39:30] SCAN_AVG,162500,9,2.11,10.89
+[2015-02-23 13:39:30] SCAN_AVG,162525,9,0.00,0.00
+[2015-02-23 13:39:30] SCAN_AVG,162550,9,0.78,11.22
+[2015-02-23 13:39:30] SCAN_OK,162450
+[2015-02-23 13:59:33] SNR_RSSI_AVG,162450,240,2.49,16.12
+[2015-02-23 14:19:35] SNR_RSSI_AVG,162450,240,1.38,15.40
+[2015-02-23 14:39:37] SNR_RSSI_AVG,162450,240,1.23,15.21
+[2015-02-23 14:45:02] SAME_PRE_DET
+[2015-02-23 14:45:02] SAME_HDR_DET
+[2015-02-23 14:45:03] SAME_HDR_RDY,1
+[2015-02-23 14:45:05] SAME_PRE_DET
+[2015-02-23 14:45:05] SAME_HDR_DET
+[2015-02-23 14:45:06] SAME_HDR_RDY,2
+[2015-02-23 14:45:07] SAME_PRE_DET
+[2015-02-23 14:45:08] SAME_HDR_DET
+[2015-02-23 14:45:08] SAME_HDR_RDY,3
+[2015-02-23 14:45:09] SAME,-CIV-RWT-000000+0300-1311432-XGDF/003-D&@...
+[2015-02-23 14:45:09] SAME_RWT
+[2015-02-23 14:45:09] SAME_EOM_DET
+[2015-02-23 14:45:10] SAME_PRE_DET
+[2015-02-23 14:45:10] SAME_EOM_DET
+[2015-02-23 14:45:12] SAME_PRE_DET
+[2015-02-23 14:45:12] SAME_EOM_DET
+[2015-02-23 14:45:14] SAME_PRE_DET
+[2015-02-23 14:45:14] SAME_EOM_DET
+[2015-02-23 14:59:39] SNR_RSSI_AVG,162450,240,2.14,10.37
+[2015-02-23 15:19:41] SNR_RSSI_AVG,162450,240,1.82,11.26
+[2015-02-23 15:39:43] SNR_RSSI_AVG,162450,240,2.27,11.83
 ```
 
 ### Repetidor Twitter
