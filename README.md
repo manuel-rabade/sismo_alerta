@@ -100,7 +100,7 @@ Cantidad | Descripción
 1 | Zumbador
 1 | Botón pulsador normalmente abierto
 1 | Swtich 1 polo 2 tiros 2 posiciones
-1 | Batería Li-Ion 3.7 V @ 800 mAh con conector JST
+1 | Batería Li-Ion 3.7 V @ 800 mAh conector JST
 1 | Convertidor AC a DC 5 V @ 500 mA micro USB
 
 #### Antena monopolo
@@ -121,6 +121,11 @@ sintonizarla, hay dos opciones:
 ### Esquema de conexiones
 
 ![Schematics](hardware/sismo_alerta.png "Schematics")
+
+- El conector USB tipo B (abajo derecha) es es en caso de una versión
+  sin batería de respaldo y Power Cell.
+- No se muestra la antena que debe ir conectada al pin ANT de la Si4707
+  Weather Band Receiver Breakout.
 
 Firmware
 --------
