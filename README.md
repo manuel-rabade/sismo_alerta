@@ -108,7 +108,7 @@ Cantidad | Descripción
 1 | Conector USB tipo B hembra
 1 | Convertidor AC a DC 5 V @ 500 mA conector USB tipo B macho
 
-** = Versión con batería de respaldo
+** Versión con batería de respaldo
 
 #### Antena monopolo
 
