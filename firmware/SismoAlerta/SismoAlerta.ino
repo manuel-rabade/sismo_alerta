@@ -118,6 +118,8 @@ void setup() {
   digitalWrite(SIGNAL_LED_RED, HIGH);
   digitalWrite(BUZZER, LOW);
   delay(SELFTEST_DELAY);
+  digitalWrite(POWER_LED_RED, LOW);
+  digitalWrite(SIGNAL_LED_RED, LOW);
 
   // si4707
   LOG.println(F("BEGIN"));
