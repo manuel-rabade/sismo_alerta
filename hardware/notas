@@ -1,0 +1,12 @@
+- En los leds bicolor la terminal más larga corresponde al color rojo
+
+- Resistencias:
+
+  R1 10M
+  R2 10M
+  R3 33
+  R4 330
+  R5 33
+  R6 330
+
+- Jumper 3 no aplica para versión sin bateria de respaldo
