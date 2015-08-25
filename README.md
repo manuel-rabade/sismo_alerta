@@ -17,6 +17,15 @@ Prototipo
 
 [![Wirewrap 3](pics/sismo_alerta_wirewrap_3.jpg "Wirewrap 3")](https://flic.kr/p/qwKxXX)
 
+Kit
+---
+
+[![Kit 1](pics/sismo_alerta_kit_1.jpg "Kit 1")](https://flic.kr/p/s8GZrR)
+
+[![Kit 2](pics/sismo_alerta_kit_2.jpg "Kit 2")](https://flic.kr/p/rvefon)
+
+[![Kit 3](pics/sismo_alerta_kit_3.jpg "Kit 3")](https://flic.kr/p/sarKxh)
+
 Operación
 ---------
 
