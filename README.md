@@ -149,6 +149,10 @@ sintonizarla, hay dos opciones:
 
 [![Kit PCB](pics/sismo_alerta_kit_pcb.jpg "Kit PCB")](https://flic.kr/p/srSpnf)
 
+- Pistas de cobre: (SVG)[hardware/sismo_alerta_copper.svg], (2x2 SVG)[hardware/sismo_alerta_copper_2x2.svg] o (2x2 PDF)[hardware/sismo_alerta_copper_2x2.pdf]
+
+- Máscara de soldadura: (SVG)[hardware/sismo_alerta_mask.svg], (2x2 SVG)[hardware/sismo_alerta_mask_2x2.svg] o (2x2 PDF)[hardware/sismo_alerta_mask_2x2.pdf]
+
 #### Componentes
 
 ![Componentes PCB](hardware/sismo_alerta_components.png "Componentes PCB")
@@ -162,6 +166,11 @@ R4, R6 | Resistencia 330 Ω 1/4 W
 Jumper3 | (Esquina inferior derecha) Se debe omitir en la versión con batería de respaldo
 S6 | Switch para apagar la versión con batería de respaldo en caso de almacenarla y así evitar se dañe la batería por perder toda la carga
 Leds Bicolor | Comúnmente la terminal más larga corresponde al color rojo y esta va orientada hacía R4 o R6
+
+### Gabinete Kit
+
+- [hardware/sismo_alerta_base.svg](SVG de la base para montaje)
+- Pendiente diseño del gabinete MDF
 
 Firmware
 --------
