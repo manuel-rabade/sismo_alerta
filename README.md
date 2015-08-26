@@ -103,9 +103,9 @@ Hardware
 Cantidad | Descripción
 -------- | -----------
 1 | [Arduino Pro Mini 3.3 V @ 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
-1 | [Power Cell: LiPo Charger/Booster](https://www.sparkfun.com/products/11231) **
+1 | [Power Cell: LiPo Charger/Booster](https://www.sparkfun.com/products/11231) *
 1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
-1 | Batería Li-Ion 3.7 V @ 800 mAh conector JST **
+1 | Batería Li-Ion 3.7 V @ 800 mAh conector JST *
 2 | Led Bicolor 5 mm rojo/verde catodo común
 2 | Resistencia 33 Ω 1/4 W
 2 | Resistencia 330 Ω 1/4 W
@@ -113,11 +113,11 @@ Cantidad | Descripción
 1 | Antena monopolo
 1 | Zumbador
 1 | Botón pulsador normalmente abierto
-1 | Swtich 1 polo 2 tiros 2 posiciones **
+1 | Swtich 1 polo 2 tiros 2 posiciones *
 1 | Conector USB tipo B hembra
 1 | Convertidor AC a DC 5 V @ 500 mA conector USB tipo B macho
 
-** Versión con batería de respaldo
+* Versión con batería de respaldo
 
 #### Antena monopolo
 
@@ -144,6 +144,24 @@ sintonizarla, hay dos opciones:
 - No se muestra la antena que debe ir conectada al pin ANT de la Si4707
   Weather Band Receiver Breakout ni la batería que debe ir al conector
   JST de la Power Cell.
+
+### PCB Kit
+
+[![Kit PCB](pics/sismo_alerta_kit_pcb.jpg "Kit PCB")](https://flic.kr/p/srSpnf)
+
+#### Componentes
+
+![Componentes PCB](hardware/sismo_alerta_components.png "Componentes PCB")
+
+Componente | Notas
+---------- | -----
+J1 | Puerto zumbador
+R1, R2 | Resistencia 10M Ω 1/4 W
+R3, R5 | Resistencia 33 Ω 1/4 W
+R4, R6 | Resistencia 330 Ω 1/4 W
+Jumper3 | (Jumper esquina inferior derecha) Se debe omitir en la versión con batería de respaldo
+S6 | Switch para apagar la versión con batería de respaldo (en caso de almacenarla y así evitar se dañe la batería por perder toda la carga)
+Leds Bicolor | Comúnmente la terminal más larga corresponde al color rojo y esta va orientada hacía R4 o R6
 
 Firmware
 --------
