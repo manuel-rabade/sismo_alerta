@@ -159,8 +159,8 @@ J1 | Puerto zumbador
 R1, R2 | Resistencia 10M Ω 1/4 W
 R3, R5 | Resistencia 33 Ω 1/4 W
 R4, R6 | Resistencia 330 Ω 1/4 W
-Jumper3 | (Jumper esquina inferior derecha) Se debe omitir en la versión con batería de respaldo
-S6 | Switch para apagar la versión con batería de respaldo (en caso de almacenarla y así evitar se dañe la batería por perder toda la carga)
+Jumper3 | (Esquina inferior derecha) Se debe omitir en la versión con batería de respaldo
+S6 | Switch para apagar la versión con batería de respaldo en caso de almacenarla y así evitar se dañe la batería por perder toda la carga
 Leds Bicolor | Comúnmente la terminal más larga corresponde al color rojo y esta va orientada hacía R4 o R6
 
 Firmware
