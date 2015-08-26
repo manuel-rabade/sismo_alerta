@@ -103,9 +103,9 @@ Hardware
 Cantidad | Descripción
 -------- | -----------
 1 | [Arduino Pro Mini 3.3 V @ 8 Mhz](http://arduino.cc/en/Main/ArduinoBoardProMini)
-1 | [Power Cell: LiPo Charger/Booster](https://www.sparkfun.com/products/11231) *
+1 | [Power Cell: LiPo Charger/Booster](https://www.sparkfun.com/products/11231) **
 1 | [Si4707 Weather Band Receiver Breakout](https://www.sparkfun.com/products/11129)
-1 | Batería Li-Ion 3.7 V @ 800 mAh conector JST *
+1 | Batería Li-Ion 3.7 V @ 800 mAh conector JST **
 2 | Led Bicolor 5 mm rojo/verde catodo común
 2 | Resistencia 33 Ω 1/4 W
 2 | Resistencia 330 Ω 1/4 W
@@ -113,11 +113,11 @@ Cantidad | Descripción
 1 | Antena monopolo
 1 | Zumbador
 1 | Botón pulsador normalmente abierto
-1 | Swtich 1 polo 2 tiros 2 posiciones *
+1 | Swtich 1 polo 2 tiros 2 posiciones **
 1 | Conector USB tipo B hembra
 1 | Convertidor AC a DC 5 V @ 500 mA conector USB tipo B macho
 
-* Versión con batería de respaldo
+** Versión con batería de respaldo
 
 #### Antena monopolo
 
