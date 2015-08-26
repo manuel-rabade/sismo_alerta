@@ -149,9 +149,9 @@ sintonizarla, hay dos opciones:
 
 [![Kit PCB](pics/sismo_alerta_kit_pcb.jpg "Kit PCB")](https://flic.kr/p/srSpnf)
 
-- Pistas de cobre: (SVG)[hardware/sismo_alerta_copper.svg], (2x2 SVG)[hardware/sismo_alerta_copper_2x2.svg] o (2x2 PDF)[hardware/sismo_alerta_copper_2x2.pdf]
+- Pistas de cobre: [SVG](hardware/sismo_alerta_copper.svg), [2x2 SVG](hardware/sismo_alerta_copper_2x2.svg) o [2x2 PDF](hardware/sismo_alerta_copper_2x2.pdf)
 
-- Máscara de soldadura: (SVG)[hardware/sismo_alerta_mask.svg], (2x2 SVG)[hardware/sismo_alerta_mask_2x2.svg] o (2x2 PDF)[hardware/sismo_alerta_mask_2x2.pdf]
+- Máscara de soldadura: [SVG](hardware/sismo_alerta_mask.svg), [2x2 SVG](hardware/sismo_alerta_mask_2x2.svg) o [2x2 PDF](hardware/sismo_alerta_mask_2x2.pdf)
 
 #### Componentes
 
@@ -169,7 +169,7 @@ Leds Bicolor | Comúnmente la terminal más larga corresponde al color rojo y es
 
 ### Gabinete Kit
 
-- [hardware/sismo_alerta_base.svg](SVG de la base para montaje)
+- [SVG de la base para montaje](hardware/sismo_alerta_base.svg)
 - Pendiente diseño del gabinete MDF
 
 Firmware
