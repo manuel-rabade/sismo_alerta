@@ -8,6 +8,36 @@ Sismo Alerta emite un fuerte sonido y parpadea sus leds en caso de
 recibir la alerta sísmica. Incluye batería de respaldo para no depender
 de la energía de la red eléctrica.
 
+Funcionamiento
+--------------
+
+Sismo Alerta es posible gracias a la señal pública del Sistema de Alerta
+Sísmica Mexicano operado por el [Centro de Instrumentación y Registro
+Sísmico](http://www.cires.org.mx/).
+
+La señal del Sistema de Alerta Sísmica Mexicano es de tipo
+[VHF](http://en.wikipedia.org/wiki/Very_high_frequency) en los canales
+de [Weather Radio](http://en.wikipedia.org/wiki/Weather_radio) y utiliza
+una versión modificiada del [protocolo
+SAME](http://en.wikipedia.org/wiki/Specific_Area_Message_Encoding) para
+transmitir alertas sobre distintos riesgos.
+
+Sismo Alerta sintoniza y decodifica esta señal gracias al chip
+[Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
+que junto a una placa [Arduino](http://arduino.cc) dispara la alerta
+sísmica de acuerdo al mensaje recibido.
+
+Advertencia
+-----------
+
+Construye, utiliza y comparte Sismo Alerta bajo tu propio riesgo.
+
+Sismo Alerta un proyecto experimental ejecutado por medio de [Ingeniería
+inversa](https://es.wikipedia.org/wiki/Ingenier%C3%ADa_inversa) del
+Sistema de Alerta Sísmica Mexicanos, además no cuenta con ninguna
+certificación o permiso del Centro de Instrumentación y Registro
+Sísmico, Gobierno de la Ciudad de México o Gobierno Federal.
+
 Prototipo
 ---------
 
@@ -75,25 +105,6 @@ Energía|Apagado|Apagada, batería de respaldo agotada
 Energía|Verde|Alimentada por la red eléctrica
 Energía|Intermitente Verde|Alimentada por la batería de respaldo
 Energía|Rojo|Problema interno de hardware
-
-Funcionamiento
---------------
-
-Sismo Alerta es posible gracias a la señal publica del Sistema de Alerta
-Sísmica Mexicano operado por el [Centro de Instrumentación y Registro
-Sísmico](http://www.cires.org.mx/).
-
-La señal del Sistema de Alerta Sísmica Mexicano es de tipo
-[VHF](http://en.wikipedia.org/wiki/Very_high_frequency) en los canales
-de [Weather Radio](http://en.wikipedia.org/wiki/Weather_radio) y utiliza
-el [protocolo
-SAME](http://en.wikipedia.org/wiki/Specific_Area_Message_Encoding) para
-transmitir alertas sobre distintos riesgos.
-
-Sismo Alerta sintoniza y decodifica esta señal gracias al chip
-[Si4707](http://www.silabs.com/products/audio/fm-am-receiver/pages/si4707.aspx)
-que junto a una placa [Arduino](http://arduino.cc) dispara la alerta
-sísmica de acuerdo al mensaje recibido.
 
 Hardware
 --------
