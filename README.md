@@ -186,9 +186,9 @@ Leds Bicolor | Comúnmente la terminal más larga corresponde al color rojo y es
 Firmware
 --------
 
-Para Arduino IDE 1.5.7 y requiere las siguientes bibliotecas:
+Para Arduino IDE 1.8.9 y requiere las siguientes bibliotecas:
 
-- [Si4707 Arduino Library](https://github.com/manuel-rabade/Si4707_Arduino_Library)
+- [Si4707 Weather Band Radio Receiver Library](https://github.com/manuel-rabade/Arduino-Si4707-Library)
 - [TimerOne Library](https://github.com/PaulStoffregen/TimerOne)
 
 La estructura de [SismoAlerta.ino](firmware/SismoAlerta/SismoAlerta.ino)
