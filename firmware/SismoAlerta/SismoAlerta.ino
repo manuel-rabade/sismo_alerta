@@ -35,7 +35,7 @@
    ============================ */
 
 // weather band radio
-Si4707 wbr(SI4707_RESET);
+Si4707 wbr(SI4707_RESET, SI4707_ENABLE);
 const unsigned long wbr_channels[] = { WBR_CHANNELS };
 
 // maquina de estados

@@ -11,6 +11,7 @@
    SIGNAL_LED_GREEN: pin led verde señal */
 
 #define SI4707_RESET 10
+#define SI4707_ENABLE 11 // obsoleto
 #define USER_BUTTON 5
 #define BUZZER 12
 #define EXT_POWER 0
